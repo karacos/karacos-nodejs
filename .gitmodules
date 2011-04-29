@@ -1,0 +1,3 @@
+[submodule "deps/couchdb"]
+	path = deps/couchdb
+	url = https://github.com/karacos/node-couchdb.git
