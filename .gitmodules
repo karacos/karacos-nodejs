@@ -1,3 +1,6 @@
 [submodule "deps/couchdb"]
 	path = deps/couchdb
 	url = https://github.com/karacos/node-couchdb.git
+[submodule "deps/memcache"]
+	path = deps/memcache
+	url = https://github.com/elbart/node-memcache.git
