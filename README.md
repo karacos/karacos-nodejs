@@ -2,8 +2,7 @@
 
 ## What is KaraCos ?
 
-An application server which exposes couchdb documents in a tree.
-KaraCos uses CouchDB, a no-SQL database for it's data storage.
+An application server which exposes resources in a tree.
 
 It's structured as a tree of Nodes and files (as leafs) in a domain (the root), nodes carries properties (like name, ACL, owner, and many more...) and can contain Nodes or files. Each Node is a couchDB document, as well as a object instance in your vm.
 
@@ -13,36 +12,44 @@ Writing an application for KaraCos will consist of subclassing node or domain ob
 
 This will give easy acces to data contained in the backed couchdb document, for example, instruction to affect value 'John Doe' to the fullname attribute of the current node will be coded as :
 
-		this['fullname'] = 'John Doe';
+		this['fullname'] = 'John Doe'; //subject to change
+
+More details about KaraCos in it's [FAQ](https://github.com/karacos/karacos-nodejs/blob/master/FAQ.md).
 
 ## Dependencies:
 
-* couchdb
+* couchdb or redis (historically, Karacos resources were mapped to couchdb documents, at this stage (design an specifications) of karacos-nodejs, i'm wondering about redis pertinence to do the job. As we want KaraCos to be usable with a minimum of requirements, redis's choice sounds pertinent cause several redis clones running in nodejs are existing).
 
 * memcache as an optional feature
-
-* some templating solution (XST , jsontemplate, or other, choice not made already)
-
-* some test framework
 
 ## Project stage:
 
 Early dev, structuring project.
 
-## But KaraCos is already written in Python, why move it to JavaScript ?
+## Getting started:
 
-* Mastering javascript, css, and html should be enough to develop webapps, even for server-side code.
+### Install couchdb and memcache
 
-* nodejs rocks!
+		apt-get install nodejs npm couchdb memcached
 
-* Google's V8 vm rocks! 
+### Grab karacos-nodejs dependencies:
 
-* <a href="http://bergie.iki.fi/blog/the_universal_runtime/">The @bergie 's post</a> finished to convince me about pertinence of javascript, event for server-side scripting.
+		npm install cradle
 
+### Clone karacos:
 
-## Will the python version stop:
+		git clone https://github.com/karacos/karacos-nodejs
+		cd karacos-nodejs
 
-Once features of the karacos-nodejs impl will reach sufficient level, the KaraCos python impl will stall and certainly die or eventually find a new maintainer...
+### Start karacos server:
+
+		node server.js [serverName]
+
+### Enjoy browsing:
+
+Browse to [[http://localhost:6543/]], you can log-in with username: admin@sysdomain and password: sysadmin.
+
+Notice: Due to early dev stage, do not consider you can login now, no need to open issues if some errors occurs.
 
 ## Contributing:
 
@@ -53,6 +60,8 @@ Of course, knowing more or less about :
 * node.js
 
 * couchdb
+
+And browse the [developer area in wiki]()
 
 But you should also understand <a href="http://www.karacos.org/documentation/model/">the KaraCos object model</a>, and i should write more KaraCos specifications ;)...
 Anyway, for warriors, there is a KaraCos spec written in python (:D), or I'm nka_111 on skype, and I would enjoy to share with you my sight of the stuff.

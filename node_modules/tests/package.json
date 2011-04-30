@@ -1,0 +1,2 @@
+{ "name" : "KaraCos tests",
+  "main" : "./testSuite.js" }

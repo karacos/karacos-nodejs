@@ -2,7 +2,9 @@ var http = require('http'),
 	couchdb = require('./deps/couchdb/lib/couchdb'),
 	client = couchdb.createClient(5984, '127.0.0.1'),
 	db = client.db('karacos2_sysdb'),
-	doc_id = 'cd83ebb919f2425a80ab891f72f0e73b';
+	doc_id = 'cd83ebb919f2425a80ab891f72f0e73b',
+	karacos = require('karacos'),
+	nedis = require('nedis');
 
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -21,4 +23,8 @@ http.createServer(function (req, res) {
 	     res.end("-= Fin =-");
 	    });
 }).listen(1337, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:1337/');
+console.log('KaraCos HTTP Server running at http://127.0.0.1:1337/');
+
+nedis.createServer().listen(1338, "127.0.0.1");
+
+console.log('Nedis data store Server running at http://127.0.0.1:1338/');
