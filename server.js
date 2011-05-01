@@ -1,28 +1,34 @@
 var http = require('http'),
-	couchdb = require('./deps/couchdb/lib/couchdb'),
-	client = couchdb.createClient(5984, '127.0.0.1'),
-	db = client.db('karacos2_sysdb'),
-	doc_id = 'cd83ebb919f2425a80ab891f72f0e73b',
-	karacos = require('karacos'),
-	nedis = require('nedis');
-
-http.createServer(function (req, res) {
+	fs = require('fs'),
+	nedis = require('nedis'),
+	staticResource = require('./deps/static-resource'),
+	karacos, server, fileHandler;
+fileHandler = staticResource.createHandler(fs.realpathSync('./resources/static'));
+server = http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  db.getDoc(doc_id, function(error, doc) {
-	  try{
-		if(error) {
-		    res.write(JSON.stringify(error));
-		}
-		else {
-		    res.write('Fetched my doc from couch:');
-		    res.write(JSON.stringify(doc));
-		}
-	  } catch(e) {
-		  res.write("Error:" + e);
-	  }
-	     res.end("-= Fin =-");
-	    });
-}).listen(1337, "127.0.0.1");
+  res.end();
+});
+server.listen(1336, "127.0.0.1");
+
+server = http.createServer(function (req, res) {
+	if (req.url.indexOf("/_static") === 0) {
+		var url = req.url.substr(8);
+		console.log(url);
+		if(!fileHandler.handle(url, req, res)) {
+	        res.writeHead(404);
+	        res.write('404');
+	        res.end();
+	    }
+	} else {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		//console.log(req);
+		res.write("hello");
+		res.end();
+	}
+});
+
+server.listen(1337, "127.0.0.1");
+
 console.log('KaraCos HTTP Server running at http://127.0.0.1:1337/');
 
 nedis.createServer().listen(1338, "127.0.0.1");

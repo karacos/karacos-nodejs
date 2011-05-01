@@ -4,3 +4,6 @@
 [submodule "deps/memcache"]
 	path = deps/memcache
 	url = https://github.com/elbart/node-memcache.git
+[submodule "deps/static-resource"]
+	path = deps/static-resource
+	url = https://github.com/atsuya/static-resource

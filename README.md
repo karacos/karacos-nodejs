@@ -30,16 +30,19 @@ Early dev, structuring project.
 
 ### Install couchdb and memcache
 
-		apt-get install nodejs npm couchdb memcached
+		apt-get install couchdb memcached
 
 ### Grab karacos-nodejs dependencies:
 
-		npm install cradle
+		npm install nedis
+		
 
 ### Clone karacos:
 
 		git clone https://github.com/karacos/karacos-nodejs
 		cd karacos-nodejs
+		git submodule init
+		git submodule update
 
 ### Start karacos server:
 
