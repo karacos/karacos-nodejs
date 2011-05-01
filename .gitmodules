@@ -10,3 +10,6 @@
 [submodule "resources/static/karacos-js-ui"]
 	path = resources/static/karacos-js-ui
 	url = https://github.com/karacos/KaraCos-js-UI.git
+[submodule "deps/redis2json"]
+	path = deps/redis2json
+	url = https://github.com/karacos/redis2json.git

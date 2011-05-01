@@ -4,11 +4,6 @@ var http = require('http'),
 	staticResource = require('./deps/static-resource'),
 	karacos, server, fileHandler;
 fileHandler = staticResource.createHandler(fs.realpathSync('./resources/static'));
-server = http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end();
-});
-server.listen(1336, "127.0.0.1");
 
 server = http.createServer(function (req, res) {
 	if (req.url.indexOf("/_static") === 0) {
@@ -31,6 +26,6 @@ server.listen(1337, "127.0.0.1");
 
 console.log('KaraCos HTTP Server running at http://127.0.0.1:1337/');
 
-nedis.createServer().listen(1338, "127.0.0.1");
+var nserver = nedis.createServer().listen(1338, "127.0.0.1");
 
 console.log('Nedis data store Server running at http://127.0.0.1:1338/');

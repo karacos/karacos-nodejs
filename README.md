@@ -28,13 +28,11 @@ Early dev, structuring project.
 
 ## Getting started:
 
-### Install couchdb and memcache
-
-		apt-get install couchdb memcached
-
 ### Grab karacos-nodejs dependencies:
 
-		npm install nedis
+Install nodejs and npm first 
+
+		npm install async nedis [redis](https://github.com/mranney/node_redis/) [rbytes](https://github.com/akdubya/rbytes)
 		
 
 ### Clone karacos:
@@ -64,7 +62,7 @@ Of course, knowing more or less about :
 
 * couchdb
 
-And browse the [developer area in wiki]()
+And browse the [developer area in wiki](https://github.com/karacos/karacos-nodejs/wiki/KaraCos-nodejs-developer-area)
 
 But you should also understand <a href="http://www.karacos.org/documentation/model/">the KaraCos object model</a>, and i should write more KaraCos specifications ;)...
 Anyway, for warriors, there is a KaraCos spec written in python (:D), or I'm nka_111 on skype, and I would enjoy to share with you my sight of the stuff.
