@@ -30,9 +30,9 @@ Early dev, structuring project.
 
 ### Grab karacos-nodejs dependencies:
 
-Install nodejs and npm first 
+Install nodejs and npm first, then use npm to install utilites :
 
-		npm install async nedis [redis](https://github.com/mranney/node_redis/) [rbytes](https://github.com/akdubya/rbytes)
+		npm install async nedis [redis](https://github.com/mranney/node_redis/) [rbytes](https://github.com/akdubya/rbytes) log4js
 		
 
 ### Clone karacos:
@@ -46,11 +46,25 @@ Install nodejs and npm first
 
 		node server.js [serverName]
 
+That won't do many things right now	
+
 ### Enjoy browsing:
 
 Browse to [[http://localhost:6543/]], you can log-in with username: admin@sysdomain and password: sysadmin.
 
 Notice: Due to early dev stage, do not consider you can login now, no need to open issues if some errors occurs.
+
+### Run testSuite
+
+You'll need expresso to run TestSuite:
+
+    npm install expresso
+
+and just run expresso in karacos-nodejs dir:
+
+    expresso
+
+That should show more of KaraCos.
 
 ## Contributing:
 
