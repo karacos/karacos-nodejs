@@ -26,6 +26,7 @@ exports['test Domain#test'] = function() {
 function assertTestDomain(domain){
 	assert.strictEqual(domain._data.type, "Domain", "Type assertion failed");
 	logger.info("['test Domain#get_by_name'] Found result: " + domain._data.type + " of name " + domain._data.name);
+	logger.info("Type of instance :" + domain.getName());
 	karacos.wrapper.endClient();
 	//console.log(domain);	
 	return;

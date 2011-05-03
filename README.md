@@ -32,7 +32,7 @@ Early dev, structuring project.
 
 Install nodejs and npm first, then use npm to install utilites :
 
-		npm install connect connect-redis async nedis redis rbytes log4js dust
+		npm install connect connect-redis async nedis redis rbytes log4js jqtpl
 		
 ### Clone karacos:
 
@@ -73,7 +73,7 @@ Of course, knowing more or less about :
 
 * node.js
 
-* couchdb
+* redis
 
 Read the [contribute](docs/CONTRIBUTE.md) doc.
 
