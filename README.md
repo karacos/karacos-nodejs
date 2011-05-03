@@ -32,7 +32,7 @@ Early dev, structuring project.
 
 Install nodejs and npm first, then use npm to install utilites :
 
-		npm install async nedis [redis](https://github.com/mranney/node_redis/) [rbytes](https://github.com/akdubya/rbytes) log4js
+		npm install connect connect-redis async nedis redis rbytes log4js
 		
 
 ### Clone karacos:

@@ -1,26 +1,30 @@
+/**
+ * Starter file for KaraCos
+ * 
+ * By Nicolas Karageuzian
+ * 
+ * This file is part of KaraCos.
+ *
+ * KaraCos is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * KaraCos is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with KaraCos.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 var http = require('http'),
 	fs = require('fs'),
 	nedis = require('nedis'),
-	staticResource = require('./deps/static-resource'),
-	karacos, server, fileHandler;
-fileHandler = staticResource.createHandler(fs.realpathSync('./resources/static'));
+	karacos = require('karacos');
 
-server = http.createServer(function (req, res) {
-	if (req.url.indexOf("/_static") === 0) {
-		var url = req.url.substr(8);
-		console.log(url);
-		if(!fileHandler.handle(url, req, res)) {
-	        res.writeHead(404);
-	        res.write('404');
-	        res.end();
-	    }
-	} else {
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		//console.log(req);
-		res.write("hello");
-		res.end();
-	}
-});
+server = karacos.http.server.getServer();
 
 server.listen(1337, "127.0.0.1");
 
