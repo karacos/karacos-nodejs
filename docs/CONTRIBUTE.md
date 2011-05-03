@@ -1,7 +1,5 @@
 # Contribute to KaraCos
 
-## Know about git
-
 ## Running the tests
 
     npm install expresso node-jscoverage

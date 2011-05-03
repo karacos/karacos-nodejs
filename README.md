@@ -75,9 +75,28 @@ Of course, knowing more or less about :
 
 * redis
 
-Read the [contribute](docs/CONTRIBUTE.md) doc.
+But you should also understand <a href="http://www.karacos.org/documentation/model/">the KaraCos object model</a>, and i should write more KaraCos specifications ;)...
+
+Some quick object model explanation:
+
+* a Document contains json data mapped to redis storage - this is an abstract class, it shouldn't be instanciated
+
+* a Parent is a Document who may contain objects of type Child - abstract class
+
+* a Child must have a Parent, a Child is a Parent (a convenience for model design, multi superclass isn't as pretty as it sounds). - abstract class
+
+* a Domain is a Parent, and can be mounted over a service (http)
+
+* a Node is a Child one of it's parent must be a Domain
+
+* An object of type Node or Domain can be requested via a browser HTTP GET request as the KaraCos http service mounts and expose objects of type Domain.
+
+* A Domain's url is /, enabling access for several domains over HTTP can be issued using vhosts and requires only a single http service listening for requests. Exposing several domains over HTTPS will engage one https service for each Domain.
+
+This stack of objects separate features, and enable to reuse them by simply subclassing one of those types in a KaraCos application
+
+Read the [contribute](https://github.com/karacos/karacos-nodejs/blob/master/docs/CONTRIBUTE.md) doc.
 
 And browse the [developer area in wiki](https://github.com/karacos/karacos-nodejs/wiki/KaraCos-nodejs-developer-area)
 
-But you should also understand <a href="http://www.karacos.org/documentation/model/">the KaraCos object model</a>, and i should write more KaraCos specifications ;)...
 Anyway, for warriors, there is a KaraCos spec written in python (:D), or I'm nka_111 on skype, and I would enjoy to share with you my sight of the stuff.
