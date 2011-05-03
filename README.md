@@ -32,9 +32,8 @@ Early dev, structuring project.
 
 Install nodejs and npm first, then use npm to install utilites :
 
-		npm install connect connect-redis async nedis redis rbytes log4js
+		npm install connect connect-redis async nedis redis rbytes log4js dust
 		
-
 ### Clone karacos:
 
 		git clone https://github.com/karacos/karacos-nodejs
@@ -75,6 +74,8 @@ Of course, knowing more or less about :
 * node.js
 
 * couchdb
+
+Read the [contribute](docs/CONTRIBUTE.md) doc.
 
 And browse the [developer area in wiki](https://github.com/karacos/karacos-nodejs/wiki/KaraCos-nodejs-developer-area)
 

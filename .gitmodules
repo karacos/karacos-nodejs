@@ -13,3 +13,6 @@
 [submodule "deps/redis2json"]
 	path = deps/redis2json
 	url = https://github.com/karacos/redis2json.git
+[submodule "deps/template.node.js"]
+	path = deps/template.node.js
+	url = https://github.com/karacos/template.node.js.git

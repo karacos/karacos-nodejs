@@ -8,4 +8,8 @@
 
 ## Writing tests:
 
-http://visionmedia.github.com/expresso/
+KaraCos tests are processed with [expresso](http://visionmedia.github.com/expresso/)
+
+## Templating
+
+KaraCos templating are written with [dust](http://akdubya.github.com/dustjs/)
