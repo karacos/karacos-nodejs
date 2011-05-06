@@ -1,7 +1,8 @@
 var assert = require('assert'),
 	crypto = require('crypto'),
 	karacos = require('karacos'),
-	log4js = require('log4js')();
+	log4js = require('log4js')(),
+	;
 
 logger = log4js.getLogger('karacos.model.Domain');
 
