@@ -14,29 +14,35 @@ function assertTestDomain(domain){
 	return;
 }
 
-function test_get_by_fqdn(domain) {
+function test_get_by_fqdn(domain,test, callback) {
 	karacos.model.Domain.get_by_fqdn(domain.attr('fqdn'), function(get_err,expected_domain) {
 		console.log("['test Domain#get_fqdn'] in karacos.model.Domain.get_by_fqdn callback");
 			assertTestDomain(expected_domain);
+			if (typeof callback === "function") {
+				callback(domain, test);
+			}
 	});
 }
 
-function test_get_by_name(domain) {
+function test_get_by_name(domain,test, callback) {
 	logger.info("START ['test Domain#get_by_name']");
 	karacos.model.Domain.get_by_name(domain.attr('name'), function(get_err,expected_domain) {
 		console.log("['test Domain#get_by_name'] in karacos.model.Domain.get_by_name callback");
 		console.log(get_err);
 		assert.ok(expected_domain !== undefined);
+		if (typeof callback === "function") {
+			callback(domain, test);
+		}
 	});
 }
 
-exports['test Domain#get_by_fqdn'] = function() {
+exports['test Domain#get_by_fqdn'] = function(test) {
 	logger.info("START ['test Domain#get_by_fqdn']");
-	karacos.wrap_testDomain('test_get_by_fqdn',test_get_by_fqdn);
+	karacos.wrap_testDomain('test_get_by_fqdn',test,test_get_by_fqdn);
 	
 }
-exports['test Domain#get_by_name'] = function() {
+exports['test Domain#get_by_name'] = function(test) {
 	logger.info("START ['test Domain#get_by_name']");
-	karacos.wrap_testDomain('test_get_by_name',test_get_by_name);
+	karacos.wrap_testDomain('test_get_by_name',test,test_get_by_name);
 	
 }

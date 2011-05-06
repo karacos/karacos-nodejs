@@ -10,8 +10,10 @@ logger = log4js.getLogger('karacos.model.Domain');
  * Helper to set up test environment
  */
 
-function clean_testDomain(domain) {
-	domain.remove();
+function clean_testDomain(domain,test) {
+	domain.remove(function(){
+		test.done();
+	});
 }
 
 function wrap_testDomain(name,callback) {
@@ -24,8 +26,7 @@ function wrap_testDomain(name,callback) {
 			},function(create_err,newdomain) {
 				if (newdomain instanceof karacos.model.Domain) {
 					if (typeof callback === "function")
-						callback(newdomain);
-					clean_testDomain(newdomain);
+						callback(newdomain, clean_testDomain);
 				} else {
 					logger.error("Created_domain is not domain: " + newdomain);
 					logger.error("Error trace: " + sys.inspect(create_err));
@@ -34,8 +35,7 @@ function wrap_testDomain(name,callback) {
 		} else {
 			if (expected_domain instanceof karacos.model.Domain) {
 				if (typeof callback === "function")
-					callback(expected_domain);
-				clean_testDomain(expected_domain);
+					callback(expected_domain, clean_testDomain);
 			} else {
 				logger.error("Expected_domain is not domain: " + expected_domain);
 				logger.error("Error trace: " + sys.inspect(get_err));
