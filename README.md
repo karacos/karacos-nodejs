@@ -18,9 +18,9 @@ More details about KaraCos in it's [FAQ](https://github.com/karacos/karacos-node
 
 ## Dependencies:
 
-* couchdb or redis (historically, Karacos resources were mapped to couchdb documents, at this stage (design an specifications) of karacos-nodejs, i'm wondering about redis pertinence to do the job. As we want KaraCos to be usable with a minimum of requirements, redis's choice sounds pertinent cause several redis clones running in nodejs are existing).
+* redis.
 
-* memcache as an optional feature
+* memcache (as an optional feature)
 
 ## Project stage:
 
@@ -30,10 +30,18 @@ Early dev, structuring project.
 
 ### Grab karacos-nodejs dependencies:
 
-Install nodejs and npm first, then use npm to install utilites :
+* Install redis:
 
-		npm install connect connect-redis async nedis redis rbytes log4js jqtpl
-		
+Ubuntu 11.04:
+
+    apt-get install redis
+
+Windows, ckeck out a redis binary [https://github.com/dmajkic/redis/downloads](https://github.com/dmajkic/redis/downloads) 
+
+[Install nodejs and npm first](http://joyeur.com/2010/12/10/installing-node-and-npm/), then use npm to install utilites :
+
+		npm install async nedis redis rbytes log4js jqtpl
+
 ### Clone karacos:
 
 		git clone https://github.com/karacos/karacos-nodejs

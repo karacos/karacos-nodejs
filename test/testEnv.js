@@ -1,21 +1,47 @@
 var assert = require('assert'),
 	crypto = require('crypto'),
 	karacos = require('karacos'),
-	log4js = require('log4js')();
+	log4js = require('log4js')(),
+	sys = require('sys');
 
 logger = log4js.getLogger('karacos.model.Domain');
 
-function provide_testdomain(callback) {
-	karacos.model.Domain.get_by_fqdn("127.0.0.1:1337", function(get_err,expected_domain) {
-		logger.debug("['provide_testdomain'] in karacos.model.Domain.get_by_fqdn callback");
-		if (expected_domain === undefined) {
+/**
+ * Helper to set up test environment
+ */
+
+function clean_testDomain(domain) {
+	domain.remove();
+}
+
+function wrap_testDomain(name,callback) {
+	assert.ok(typeof name === "string");
+	karacos.model.Domain.get_by_name(name, function(get_err,expected_domain) {
+		if (typeof expected_domain === "undefined") {
 			karacos.model.Domain.create({
-				name: 'testdomain',
-				fqdn: '127.0.0.1:1337'
+				name: name,
+				fqdn: name
 			},function(create_err,newdomain) {
-				callback(newdomain);
+				if (newdomain instanceof karacos.model.Domain) {
+					if (typeof callback === "function")
+						callback(newdomain);
+					clean_testDomain(newdomain);
+				} else {
+					logger.error("Created_domain is not domain: " + newdomain);
+					logger.error("Error trace: " + sys.inspect(create_err));
+				}	
 			});
 		} else {
-			callback(expected_domain);
+			if (expected_domain instanceof karacos.model.Domain) {
+				if (typeof callback === "function")
+					callback(expected_domain);
+				clean_testDomain(expected_domain);
+			} else {
+				logger.error("Expected_domain is not domain: " + expected_domain);
+				logger.error("Error trace: " + sys.inspect(get_err));
+			}
 		}
+	});
+	
 }
+karacos.wrap_testDomain = wrap_testDomain
