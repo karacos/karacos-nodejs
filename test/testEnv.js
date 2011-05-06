@@ -16,7 +16,7 @@ function clean_testDomain(domain,test) {
 	});
 }
 
-function wrap_testDomain(name,callback) {
+function wrap_testDomain(name,test,callback) {
 	assert.ok(typeof name === "string");
 	karacos.model.Domain.get_by_name(name, function(get_err,expected_domain) {
 		if (typeof expected_domain === "undefined") {
@@ -26,7 +26,7 @@ function wrap_testDomain(name,callback) {
 			},function(create_err,newdomain) {
 				if (newdomain instanceof karacos.model.Domain) {
 					if (typeof callback === "function")
-						callback(newdomain, clean_testDomain);
+						callback(newdomain,test, clean_testDomain);
 				} else {
 					logger.error("Created_domain is not domain: " + newdomain);
 					logger.error("Error trace: " + sys.inspect(create_err));
@@ -35,7 +35,7 @@ function wrap_testDomain(name,callback) {
 		} else {
 			if (expected_domain instanceof karacos.model.Domain) {
 				if (typeof callback === "function")
-					callback(expected_domain, clean_testDomain);
+					callback(expected_domain,test, clean_testDomain);
 			} else {
 				logger.error("Expected_domain is not domain: " + expected_domain);
 				logger.error("Error trace: " + sys.inspect(get_err));

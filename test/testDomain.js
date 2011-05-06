@@ -2,7 +2,8 @@ var assert = require('assert'),
 	crypto = require('crypto'),
 	karacos = require('karacos'),
 	log4js = require('log4js')(),
-	testEnv = require('./testEnv.js');
+	testEnv = require('./testEnv.js')
+	sys = require('sys');
 
 logger = log4js.getLogger('karacos.model.Domain');
 
@@ -16,7 +17,7 @@ function assertTestDomain(domain){
 
 function test_get_by_fqdn(domain,test, callback) {
 	karacos.model.Domain.get_by_fqdn(domain.attr('fqdn'), function(get_err,expected_domain) {
-		console.log("['test Domain#get_fqdn'] in karacos.model.Domain.get_by_fqdn callback");
+		console.log("['test_get_by_fqdn'] domain found " + sys.inspect(expected_domain));
 			assertTestDomain(expected_domain);
 			if (typeof callback === "function") {
 				callback(domain, test);
@@ -26,7 +27,7 @@ function test_get_by_fqdn(domain,test, callback) {
 
 function test_get_by_name(domain,test, callback) {
 	logger.info("START ['test Domain#get_by_name']");
-	karacos.model.Domain.get_by_name(domain.attr('name'), function(get_err,expected_domain) {
+	karacos.model.Domain.get_by_name('test_get_by_name', function(get_err,expected_domain) {
 		console.log("['test Domain#get_by_name'] in karacos.model.Domain.get_by_name callback");
 		console.log(get_err);
 		assert.ok(expected_domain !== undefined);
