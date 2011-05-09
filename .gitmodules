@@ -16,3 +16,6 @@
 [submodule "deps/template.node.js"]
 	path = deps/template.node.js
 	url = https://github.com/karacos/template.node.js.git
+[submodule "node_modules/log4js"]
+	path = node_modules/log4js
+	url = https://github.com/csausdev/log4js-node.git
