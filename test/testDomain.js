@@ -7,8 +7,8 @@ var assert = require('assert'),
 
 logger = log4js.getLogger('karacos.model.Domain');
 
-function assertTestDomain(domain){
-	assert.strictEqual(domain.attr('type'), "Domain", "Type assertion failed");
+function assertTestDomain(domain, test){
+	test.strictEqual(domain.attr('type'), "Domain", "Type assertion failed");
 	logger.info("['test Domain#get_by_name'] Found result: " + domain._data.type + " of name " + domain._data.name);
 	logger.info("Type of instance :" + domain._data.type);
 	//console.log(domain);	
@@ -18,7 +18,7 @@ function assertTestDomain(domain){
 function test_get_by_fqdn(domain,test, callback) {
 	karacos.model.Domain.get_by_fqdn(domain.attr('fqdn'), function(get_err,expected_domain) {
 		console.log("['test_get_by_fqdn'] domain found " + sys.inspect(expected_domain));
-			assertTestDomain(expected_domain);
+			assertTestDomain(expected_domain,test);
 			if (typeof callback === "function") {
 				callback(domain, test);
 			}
@@ -30,7 +30,7 @@ function test_get_by_name(domain,test, callback) {
 	karacos.model.Domain.get_by_name('test_get_by_name', function(get_err,expected_domain) {
 		console.log("['test Domain#get_by_name'] in karacos.model.Domain.get_by_name callback");
 		console.log(get_err);
-		assert.ok(expected_domain !== undefined);
+		test.ok(expected_domain !== undefined);
 		if (typeof callback === "function") {
 			callback(domain, test);
 		}

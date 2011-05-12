@@ -63,13 +63,13 @@ Notice: Due to early dev stage, do not consider you can login now, no need to op
 
 ### Run testSuite
 
-You'll need expresso to run TestSuite:
+You'll need nodeunit to run TestSuite:
 
-    npm install expresso
+    npm install nodeunit
 
-and just run expresso in karacos-nodejs dir:
+and just run nodeunit test in karacos-nodejs dir:
 
-    expresso
+    nodeunit test
 
 That should show more of KaraCos.
 

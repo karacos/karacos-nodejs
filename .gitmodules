@@ -19,3 +19,6 @@
 [submodule "node_modules/log4js"]
 	path = node_modules/log4js
 	url = https://github.com/csausdev/log4js-node.git
+[submodule "resources/static/aloha"]
+	path = resources/static/aloha
+	url = https://github.com/karacos/Aloha-Editor.git

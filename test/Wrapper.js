@@ -1,7 +1,7 @@
 var assert = require('assert'),
 	crypto = require('crypto'),
 	karacos= require('karacos');
-exports['test Wrapper#test'] = function() {
+exports['test Wrapper#getAllKeys'] = function(test) {
 	//var karacos = require('karacos');
 	var shasum = crypto.createHash('md5'),
 		client = karacos.wrapper.getClient();
@@ -10,10 +10,15 @@ exports['test Wrapper#test'] = function() {
 			for (k in keys) {
 				console.log('Wrapper test: db["' + keys[k]+ '"] = ' +values[k]);
 			}
+			test.done();
 		});
 	});
-	client.get("no key", function(err, val) {
+}
+exports['test Wrapper#getNoKey'] = function(test) {
+	var client = karacos.wrapper.getClient();
+	client.get("nokey", function(err, val) {
 		console.log("Wrapper test: no key err type:"+ typeof err + ": " + err);
 		console.log("Wrapper test: no key val type:"+ typeof val + ": " + val);
+		test.done();
 	});
 }
