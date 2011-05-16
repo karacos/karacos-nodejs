@@ -36,6 +36,6 @@ exports['test Parent#test_create_child_node'] = function(test) {
 	karacos.wrap_testDomain('test_create_child_node',test,test_create_child_node);
 }
 
-exports['test Parent#test_getNamedItem'] = function(test) {
-	karacos.wrap_testDomain('test_getNamedItem',test,test_getNamedItem);
-}
+//exports['test Parent#test_getNamedItem'] = function(test) {
+//	karacos.wrap_testDomain('test_getNamedItem',test,test_getNamedItem);
+//}

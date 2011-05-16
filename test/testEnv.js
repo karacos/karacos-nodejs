@@ -2,15 +2,15 @@ var assert = require('assert'),
 	crypto = require('crypto'),
 	karacos = require('karacos'),
 	log4js = require('log4js')(),
-	sys = require('sys');
-
-logger = log4js.getLogger('karacos.model.Domain');
+	sys = require('sys'),
+	logger = log4js.getLogger('karacos.test.Env');
 
 /**
  * Helper to set up test environment
  */
 
 function clean_testDomain(domain,test) {
+	logger.debug('Removing domain: ' + sys.inspect(domain));
 	domain.remove(function(){
 		test.done();
 	});

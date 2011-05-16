@@ -21,7 +21,7 @@
 
 var http = require('http'),
 	fs = require('fs'),
-	nedis = require('nedis'),
+//	nedis = require('nedis'),
 	karacos = require('karacos');
 
 server = karacos.http.server.getServer();
@@ -30,6 +30,6 @@ server.listen(1337, "127.0.0.1");
 
 console.log('KaraCos HTTP Server running at http://127.0.0.1:1337/');
 
-var nserver = nedis.createServer().listen(1338, "127.0.0.1");
-
-console.log('Nedis data store Server running at http://127.0.0.1:1338/');
+//var nserver = nedis.createServer().listen(1338, "127.0.0.1");
+//
+//console.log('Nedis data store Server running at http://127.0.0.1:1338/');

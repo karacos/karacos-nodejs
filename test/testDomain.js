@@ -3,22 +3,26 @@ var assert = require('assert'),
 	karacos = require('karacos'),
 	log4js = require('log4js')(),
 	testEnv = require('./testEnv.js')
-	sys = require('sys');
-
-logger = log4js.getLogger('karacos.test.Domain');
+	sys = require('sys'),
+	logger = log4js.getLogger('karacos.test.Domain');
 
 function assertTestDomain(domain, test){
-	test.ok((domain instanceof karacos.model.Domain), "Type assertion failed");
-	logger.info("['test Domain#get_by_name'] Found result: " + domain._data.type + " of name " + domain._data.name);
-	logger.info("Type of instance :" + domain._data.type);
-	//console.log(domain);	
-	return;
+	try {
+		test.ok((domain instanceof karacos.model.Domain), "Type assertion failed");
+		logger.info("['test Domain#get_by_name'] Found result: " + domain._data.type + " of name " + domain._data.name);
+		logger.info("Type of instance :" + domain._data.type);
+		//console.log(domain);	
+		return;		
+	} catch(e) {
+		test.ok(false,"Exception occured during test");
+		console.log(e);
+	}
 }
 
 function test_get_by_fqdn(domain,test, callback) {
 	karacos.model.Domain.get_by_fqdn(domain.attr('fqdn'), function(get_err,expected_domain) {
-		console.log("['test_get_by_fqdn'] domain found " + sys.inspect(expected_domain));
-			assertTestDomain(expected_domain,test);
+		console.log("['test_get_by_fqdn'] domain found " + sys.inspect(domain));
+			assertTestDomain(domain,test);
 			if (typeof callback === "function") {
 				callback(domain, test);
 			}
@@ -27,10 +31,10 @@ function test_get_by_fqdn(domain,test, callback) {
 
 function test_get_by_name(domain,test, callback) {
 	logger.info("START ['test Domain#get_by_name']");
-	karacos.model.Domain.get_by_name('test_get_by_name', function(get_err,expected_domain) {
+	karacos.model.Domain.get_by_name('test_get_by_name', function(get_err,get_domain) {
 		console.log("['test Domain#get_by_name'] in karacos.model.Domain.get_by_name callback");
 		console.log(get_err);
-		assertTestDomain(expected_domain,test);
+		assertTestDomain(get_domain,test);
 		if (typeof callback === "function") {
 			callback(domain, test);
 		}
